@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: "root",
 
 // Your password. Make sure to ENTER YOUR PASSWORD between "" in order for the app to function properly.
-    password: "ladle6\"Triad",
+    password: "",
     database: "employee_tracker"
     });
 
