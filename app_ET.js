@@ -11,12 +11,13 @@ const connection = mysql.createConnection({
     user: "root",
 
 // Your password. Make sure to ENTER YOUR PASSWORD between "" in order for the app to function properly.
-    password: "",
+    password: "ladle6\"Triad",
     database: "employee_tracker"
     });
 
     connection.connect(function(err) {
     if (err) throw err;
+    console.log("connected as id " + connection.threadId + "\n");
 
 runSearch();
     });
@@ -57,7 +58,7 @@ runSearch();
             case "Review Employees":
               reviewEmployee();
               break;
-// Call addDepartment which will essentially be: INSERT INTO department (name) VALUES ("XXX"),     
+// Call addDepartment which will essentially be: INSERT INTO department (name) VALUES ("XXX")     
             case "Add Department":
               addDepartment();
               break;
@@ -82,6 +83,65 @@ runSearch();
               
             }
           });
-      }
+      };
 // End of runSearch Function. Whew!
+
+// --------------------------------------------------
 // Write other functions below, have them close by calling runSearch to return to Main Menu for validation.
+
+// reviewDepartment which will essentially be: SELECT * FROM department
+function reviewDepartment() {
+    console.log("Showing all departments:\n");
+    connection.query("SELECT * FROM department", function(err, res) {
+      if (err) throw err;
+      
+      console.table(res);
+      runSearch();
+    });
+  };
+// reviewRole which will essentially be: SELECT * FROM role
+function reviewRole() {
+    console.log("Showing all roles:\n");
+    connection.query("SELECT * FROM role", function(err, res) {
+      if (err) throw err;
+      
+      console.table(res);
+      runSearch();
+    });
+  };
+// reviewEmployee which will essentially be: SELECT * FROM employee
+function reviewEmployee() {
+    console.log("Showing all employees:\n");
+    connection.query("SELECT * FROM employee", function(err, res) {
+      if (err) throw err;
+      
+      console.table(res);
+      runSearch();
+    });
+  };
+// addDepartment which will essentially be: INSERT INTO department (name) VALUES ("Acquisitions")
+function addDepartment() {
+
+    inquirer
+          .prompt({
+            name: "newDepartment",
+            type: "input",
+            message: "Please enter the name of the department you want to add:",
+            
+          })
+          .then(function(answer) {
+          let newDpt = answer.newDepartment;
+          connection.query(`INSERT INTO department (name) VALUES ("${newDpt}")`, function (err, res) { 
+
+      if (err) throw err;
+      
+      console.log("A new department has been created.");
+      runSearch();
+    });
+  });
+};
+// addRole which will essentially be: INSERT INTO role (title, salary, department_id) VALUES ("Sales Team Leader", 45000, 1)
+
+// addEmployee which will essentially be: INSERT INTO employee (first_name, last_name, role_id) VALUES ("Trevor", "Bruttenholm", 6)
+
+// updateEmployeeRole which will essentially be: UPDATE employee SET role = ? WHERE id = ?
