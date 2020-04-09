@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: "root",
 
 // Your password. Make sure to ENTER YOUR PASSWORD between "" in order for the app to function properly.
-    password: "ladle6\"Triad",
+    password: "",
     database: "employee_tracker"
     });
 
@@ -141,7 +141,40 @@ function addDepartment() {
   });
 };
 // addRole which will essentially be: INSERT INTO role (title, salary, department_id) VALUES ("Sales Team Leader", 45000, 1)
+async function addRole() {
 
+    inquirer
+          .prompt([{
+            name: "newTitle",
+            type: "input",
+            message: "Please enter the TITLE of the new role you want to create:"
+            
+          },
+          {
+            name: "newSalary",
+            type: "number",
+            message: "Please enter the SALARY for this new role (Input must be a number with NO punctuation):"
+            
+          },
+          {
+            name: "newDeptID",
+            type: "number",
+            message: "Please enter the DEPARTMENT ID for this role (If you do not know your Department ID, you can look it up using Review Departments on the Main Menu.):"
+            
+          }])
+          .then(function(answer) {
+          let newTitle = answer.newTitle;
+          let newSalary = answer.newSalary;
+          let newDeptID = answer.newDeptID;
+          connection.query(`INSERT INTO role (title, salary, department_id) VALUES ("${newTitle}", ${newSalary}, ${newDeptID})`, function (err, res) { 
+
+      if (err) throw err;
+      
+      console.log("A new role has been created.");
+      runSearch();
+    });
+  });
+};
 // addEmployee which will essentially be: INSERT INTO employee (first_name, last_name, role_id) VALUES ("Trevor", "Bruttenholm", 6)
 
 // updateEmployeeRole which will essentially be: UPDATE employee SET role = ? WHERE id = ?
