@@ -176,5 +176,38 @@ async function addRole() {
   });
 };
 // addEmployee which will essentially be: INSERT INTO employee (first_name, last_name, role_id) VALUES ("Trevor", "Bruttenholm", 6)
+async function addEmployee() {
 
+    inquirer
+          .prompt([{
+            name: "firstName",
+            type: "input",
+            message: "Please enter the new employee's FIRST name:"
+            
+          },
+          {
+            name: "lastName",
+            type: "input",
+            message: "Please enter the new employee's LAST name:"
+            
+          },
+          {
+            name: "roleID",
+            type: "number",
+            message: "Please enter the ROLE ID for this new employee(If you do not know the Role ID, you can look it up using Review Roles on the Main Menu.):"
+            
+          }])
+          .then(function(answer) {
+          let firstName = answer.firstName;
+          let lastName = answer.lastName;
+          let roleID = answer.roleID;
+          connection.query(`INSERT INTO employee (first_name, last_name, role_id) VALUES ("${firstName}", "${lastName}", ${roleID})`, function (err, res) { 
+
+      if (err) throw err;
+      
+      console.log("A new role has been created.");
+      runSearch();
+    });
+  });
+};
 // updateEmployeeRole which will essentially be: UPDATE employee SET role = ? WHERE id = ?
