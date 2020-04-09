@@ -15,7 +15,7 @@ INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 35000, 1)
 ("Manager", 50000, 5);
 
 -- Make some seed value employees
-INSERT INTO employee (first_name, last_name, role_id) VALUES ("Bruce", "Willis", 1),
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("Bruce", "Willis", 1),
 ("Danny", "Glover", 1),
 ("Charlize", "Theron", 2),
 ("Linda", "Hamilton", 2),

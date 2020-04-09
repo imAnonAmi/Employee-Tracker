@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: "root",
 
 // Your password. Make sure to ENTER YOUR PASSWORD between "" in order for the app to function properly.
-    password: "",
+    password: "ladle6\"Triad",
     database: "employee_tracker"
     });
 
@@ -76,6 +76,8 @@ runSearch();
               break;
 
             case "Exit Application":
+              console.log("Goodbye diligent employee stalker!");
+              connection.end();
               return;
               
             }
