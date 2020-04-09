@@ -24,16 +24,11 @@ If downloaded locally:
 
 XXXXXX
 
-2. When you have navigated to this folder in your terminal, type the following command to initialize the package. Accept default values for all questions.
-
-npm init
-
-
-3. When you have successfully generated the package.json, type the following command to load all dependencies:
+2. When you have navigated to this folder in your terminal, type the following command to load all dependencies:
 
 npm i
 
-4. When all npm has finished installing dependencies, type the following command (still in the same folder) to run app:
+3. When all npm has finished installing dependencies, type the following command (still in the same folder) to run app:
 
 XXXXXX
 
