@@ -211,3 +211,30 @@ async function addEmployee() {
   });
 };
 // updateEmployeeRole which will essentially be: UPDATE employee SET role = ? WHERE id = ?
+async function updateEmployeeRole() {
+
+  inquirer
+        .prompt([{
+          name: "empID",
+          type: "number",
+          message: "Please enter the EMPLOYEE ID for the employee whose role you would like to modify (If you do not know the Employee ID, you can look it up using Review Employees on the Main Menu.):"
+          
+        },
+        {
+          name: "roleID",
+          type: "number",
+          message: "Please enter the ROLE ID for this new employee (If you do not know the Role ID, you can look it up using Review Roles on the Main Menu.):"
+          
+        }])
+        .then(function(answer) {
+        let empID = answer.empID;
+        let roleID = answer.roleID;
+        connection.query(`UPDATE employee SET role_id = ${roleID} WHERE id = ${empID}`, function (err, res) { 
+
+    if (err) throw err;
+    
+    console.log("Employee role has been modified.");
+    runSearch();
+  });
+});
+};
