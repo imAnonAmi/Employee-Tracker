@@ -13,7 +13,7 @@ Homework 12 assignment
 * Questions
 
 ## Description
-This a simple organizational CMS, that allows the user to manage a variety of staff administration functions utilizing a CLI. Within this application, the user navigates a menu list of options which enable them to perform the following functions:
+This a simple organizational database app, that allows the user to manage a variety of staff administration functions utilizing a CLI. Within this application, the user navigates a menu list of options which enable them to perform the following functions:
 
   * Add departments, roles, and employees
 
